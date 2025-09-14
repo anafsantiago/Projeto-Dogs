@@ -1,34 +1,43 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useForm from "../../Hooks/useForm";
 import styles from "./LoginForm.module.css";
 import foto from "../../Assets/login.jpg";
 import Input from "../Forms/Input";
 import Button from "../Forms/Button";
+import { TOKEN_POST, USER_GET } from "../../api";
 
 const LoginForm = () => {
-  const [username, setUsername] = React.useState("Ana");
-  const [password, setPassword] = React.useState("");
+  const password = useForm();
+  const username = useForm();
 
-  function handleSubmit(event) {
+  React.useEffect(() => {
+    const token = window.localStorage.getItem("token");
+    if (token) {
+      getUser(token);
+    }
+  }, []);
+
+  async function getUser(token) {
+    const { url, options } = USER_GET(token);
+    const response = await fetch(url, options);
+    const json = await response.json();
+    console.log(json);
+  }
+
+  async function handleSubmit(event) {
     event.preventDefault();
-    fetch("https://dogsapi.origamid.dev/json/jwt-auth/v1/token", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username,
-        password,
-      }),
-    })
-      .then((response) => {
-        console.log(response);
-        return response.json();
-      })
-      .then((json) => {
-        console.log(json);
-        return json;
+
+    if (password.validate() && username.validate()) {
+      const { url, options } = TOKEN_POST({
+        username: username.value,
+        password: password.value,
       });
+      const response = await fetch(url, options);
+      const json = await response.json();
+      window.localStorage.setItem("token", json.token);
+      getUser(json.token);
+    }
   }
 
   return (
@@ -46,8 +55,10 @@ const LoginForm = () => {
               type="text"
               id="username"
               name="username"
-              value={username}
-              setValue={setUsername}
+              valueState={username.value}
+              handleBlur={username.handleBlur}
+              handleChange={username.handleChange}
+              error={username.error}
             />
             <Input
               label="Senha"
@@ -55,8 +66,10 @@ const LoginForm = () => {
               htmlFor="password"
               id="password"
               name="password"
-              value={password}
-              setValue={setPassword}
+              valueState={password.value}
+              handleBlur={password.handleBlur}
+              handleChange={password.handleChange}
+              error={password.error}
             />
             <Button>Entrar</Button>
           </form>
