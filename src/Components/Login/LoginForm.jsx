@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useForm from "../../Hooks/useForm";
 import styles from "./LoginForm.module.css";
 import foto from "../../Assets/login.jpg";
@@ -8,7 +8,7 @@ import Button from "../Forms/Button";
 import { UserContext } from "../../UserContext";
 
 const LoginForm = () => {
-  const context = React.useContext(UserContext);
+  const { userLogin, error, loading } = React.useContext(UserContext);
 
   const password = useForm();
   const username = useForm();
@@ -17,7 +17,7 @@ const LoginForm = () => {
     event.preventDefault();
 
     if (password.validate() && username.validate()) {
-      context.userLogin(username.value, password.value);
+      userLogin(username.value, password.value);
     }
   }
 
@@ -52,7 +52,13 @@ const LoginForm = () => {
               handleChange={password.handleChange}
               error={password.error}
             />
-            <Button>Entrar</Button>
+
+            {loading ? (
+              <Button disabled>Carregando...</Button>
+            ) : (
+              <Button>Entrar</Button>
+            )}
+            {error && <p>{error}</p>}
           </form>
           <Link to="perdeu" className={styles.perdeu}>
             Perdeu a Senha?
