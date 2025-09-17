@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Input.module.css";
+import Erro from "../Helper/Erro";
 
 const Input = ({
   id,
@@ -24,7 +25,7 @@ const Input = ({
         onBlur={handleBlur}
         onChange={handleChange}
       />
-      {error && <p className={styles.error}>{error}</p>}
+      <Erro error={error} />
     </div>
   );
 };
