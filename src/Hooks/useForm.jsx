@@ -3,7 +3,8 @@ import React from "react";
 const types = {
   password: {
     regex: /^(?=.*d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$/,
-    message: "Senha inválida",
+    message:
+      "A senha precisa ter, pelo menos, 8 dígitos, uma letra maiúscula e um caractere especial",
   },
   email: {
     regex:
