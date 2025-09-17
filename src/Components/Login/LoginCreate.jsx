@@ -12,8 +12,8 @@ const LoginCreate = () => {
   const password = useForm("password");
   const email = useForm("email");
 
-  const context = React.useContext(UserContext);
-  const requestApi = useFetch();
+  const { userLogin } = React.useContext(UserContext);
+  const { loading, error, request } = useFetch();
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -23,9 +23,9 @@ const LoginCreate = () => {
         email: email.value,
         password: password.value,
       });
-      const { response } = await requestApi.request(url, options);
+      const { response } = await request(url, options);
       if (response.ok) {
-        await context.userLogin(username.value, password.value);
+        await userLogin(username.value, password.value);
       }
     }
   }
@@ -58,12 +58,12 @@ const LoginCreate = () => {
           id="password"
           {...password}
         />
-        {requestApi.loading ? (
-          <Button disabled>Cadastrar</Button>
+        {loading ? (
+          <Button disabled>Cadastrando...</Button>
         ) : (
           <Button>Cadastrar</Button>
         )}
-        <Erro error={requestApi.error} />
+        <Erro error={error} />
       </form>
     </section>
   );

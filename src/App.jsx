@@ -11,6 +11,8 @@ import LoginPasswordLost from "./Components/Login/LoginPasswordLost";
 import LoginPasswordReset from "./Components/Login/LoginPasswordReset";
 import LoginCreate from "./Components/Login/LoginCreate";
 import { UserStorage } from "./UserContext";
+import User from "./Components/User/User";
+import ProtectedRoute from "./Components/Helper/ProtectedRoute";
 
 const App = () => {
   return (
@@ -24,6 +26,20 @@ const App = () => {
             <Route path="perdeu" element={<LoginPasswordLost />} />
             <Route path="resetar" element={<LoginPasswordReset />} />
             <Route path="criar" element={<LoginCreate />} />
+          </Route>
+          <Route
+            path="conta/*"
+            element={
+              <ProtectedRoute>
+                <User />
+              </ProtectedRoute>
+            }
+          >
+            {/*
+            <Route path="" element={<Feed />} />
+            <Route path="estatisticas" element={<Estatisticas />} />
+            <Route path="postar" element={<Posts />} />
+            */}
           </Route>
         </Routes>
         <Footer />

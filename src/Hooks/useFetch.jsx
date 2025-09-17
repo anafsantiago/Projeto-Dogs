@@ -1,10 +1,11 @@
 import React from "react";
 
 const useFetch = () => {
-  const [data, setData] = React.useState("");
-  const [loading, setLoading] = React.useState("");
-  const [error, setError] = React.useState("");
+  const [data, setData] = React.useState(null);
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState(null);
 
+  //A função de request é criada dentro de um useCallback, para que não seja recriada sempre que o useFetch for utilizado
   const request = React.useCallback(async (url, options) => {
     let response;
     let json;
@@ -24,7 +25,7 @@ const useFetch = () => {
       setData(json);
       return { response, json };
     }
-  });
+  }, []);
 
   return {
     data,
