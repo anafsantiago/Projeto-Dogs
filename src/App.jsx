@@ -13,6 +13,9 @@ import LoginCreate from "./Components/Login/LoginCreate";
 import { UserStorage } from "./UserContext";
 import User from "./Components/User/User";
 import ProtectedRoute from "./Components/Helper/ProtectedRoute";
+import UserStats from "./Components/User/UserStats";
+import Feed from "./Components/Feed/Feed";
+import UserPhotoPost from "./Components/User/UserPhotoPost";
 
 const App = () => {
   return (
@@ -35,11 +38,9 @@ const App = () => {
               </ProtectedRoute>
             }
           >
-            {/*
             <Route path="" element={<Feed />} />
-            <Route path="estatisticas" element={<Estatisticas />} />
-            <Route path="postar" element={<Posts />} />
-            */}
+            <Route path="estatisticas" element={<UserStats />} />
+            <Route path="postar" element={<UserPhotoPost />} />
           </Route>
         </Routes>
         <Footer />
