@@ -12,7 +12,7 @@ const UserHeader = () => {
 
     switch (pathname) {
       case "/conta":
-        setTitle("Minha conta");
+        setTitle("Minha Conta");
         break;
       case "/conta/estatisticas":
         setTitle("Estatísticas");
@@ -20,6 +20,8 @@ const UserHeader = () => {
       case "/conta/postar":
         setTitle("Poste Sua Foto");
         break;
+      default:
+        setTitle("Minha Conta");
     }
   }, [location]);
 

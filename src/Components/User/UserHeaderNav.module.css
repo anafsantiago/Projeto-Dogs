@@ -1,4 +1,4 @@
-.menu {
+.nav {
   display: flex;
   gap: 1rem;
 }
@@ -38,12 +38,12 @@
   fill: #fb1;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 40rem) {
   .menuDesativado {
     display: none;
   }
 
-  .menu {
+  .nav {
     flex-direction: column;
     border-radius: 0.2rem;
     gap: 0;
@@ -76,5 +76,49 @@
     box-shadow: none;
     border-color: transparent;
     border-bottom-color: #eee;
+  }
+
+  .mobileButton {
+    background-color: #eee;
+    border-radius: 0.2rem;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 3px transparent;
+    padding: 0;
+    border: 1px solid transparent;
+    cursor: pointer;
+  }
+
+  .mobileButton::after {
+    content: "";
+    display: block;
+    background-color: currentColor;
+    width: 1.2rem;
+    height: 2px;
+    border-radius: 2px;
+    box-shadow: 0 6px currentColor, 0 -6px currentColor;
+    transition: 0.2s;
+  }
+
+  .mobileButton:hover,
+  .mobileButton:focus,
+  .mobileButtonActive {
+    outline: none;
+    background-color: white;
+    box-shadow: 0 0 0 3px #fea;
+    border-color: #fb1;
+    color: #fb1;
+  }
+
+  .mobileButtonActive::after {
+    transform: rotate(-90deg);
+    width: 4px;
+    height: 4px;
+    box-shadow: 0 8px currentColor, 0 -8px currentColor;
+
+    border-radius: 50%;
   }
 }

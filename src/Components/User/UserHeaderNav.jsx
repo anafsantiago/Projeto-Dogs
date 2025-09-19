@@ -6,38 +6,32 @@ import Feed from "../../Assets/feed.svg?react";
 import Estatisticas from "../../Assets/estatisticas.svg?react";
 import Adicionar from "../../Assets/adicionar.svg?react";
 import Sair from "../../Assets/sair.svg?react";
-import MenuMobile from "../MenuMobile";
+import useMedia from "../../Hooks/useMedia";
 
 const UserHeaderNav = () => {
   const { userLogout } = React.useContext(UserContext);
-  const [mobile, setMobile] = React.useState(null);
-  const [width, setWidth] = React.useState(window.innerWidth);
   const navigate = useNavigate();
+  const mobile = useMedia("(max-width: 40rem)");
+  const [mobileMenu, setMobileMenu] = React.useState(false);
 
   function handleLogout() {
     userLogout();
     navigate("/login");
   }
 
-  React.useEffect(() => {
-    function resizeWidth() {
-      setWidth(window.innerWidth);
-    }
-    window.addEventListener("resize", resizeWidth);
-    if (width <= 800) {
-      setMobile(true);
-    } else {
-      setMobile(false);
-    }
-    return () => {
-      window.removeEventListener("resize", resizeWidth);
-    };
-  }, [width]);
-
   return (
-    <nav className={styles.nav}>
-      {mobile && <MenuMobile />}
-      <div className={styles.menu}>
+    <>
+      {mobile && (
+        <button
+          aria-label="Menu"
+          onClick={() => setMobileMenu(!mobileMenu)}
+          className={`${styles.mobileButton} ${
+            mobileMenu && styles.mobileButtonActive
+          }`}
+        ></button>
+      )}
+
+      <nav className={`${!mobileMenu && styles.menuDesativado} ${styles.nav}`}>
         <NavLink to="/conta" end>
           <Feed />
           {mobile && "Minhas Fotos"}
@@ -54,8 +48,8 @@ const UserHeaderNav = () => {
           <Sair onClick={handleLogout} />
           {mobile && "Sair"}
         </button>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 };
 
