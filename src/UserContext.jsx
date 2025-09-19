@@ -11,17 +11,13 @@ export const UserStorage = ({ children }) => {
   const [error, setError] = React.useState(null);
   const navigate = useNavigate();
 
-  const userLogout = React.useCallback(
-    async function () {
-      setData(null);
-      setError(null);
-      setLogin(false);
-      setLoading(false);
-      window.localStorage.removeItem("token");
-      navigate("/login");
-    },
-    [navigate]
-  );
+  const userLogout = React.useCallback(async function () {
+    setData(null);
+    setError(null);
+    setLogin(false);
+    setLoading(false);
+    window.localStorage.removeItem("token");
+  }, []);
 
   //Faz uma chamada à API passando o token nos headers e recebendo um GET dos dados de usuário. Puxa o usuário
   async function getUser(token) {

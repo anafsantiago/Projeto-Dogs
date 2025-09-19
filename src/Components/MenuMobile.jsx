@@ -10,7 +10,7 @@ const MenuMobile = () => {
       className={
         activeMenu
           ? `${styles.menuMobile} ${styles.menuMobileActive}`
-          : styles.menuMobile
+          : `${styles.menuMobile}`
       }
     ></button>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import { UserContext } from "../../UserContext";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./UserHeaderNav.module.css";
 import Feed from "../../Assets/feed.svg?react";
 import Estatisticas from "../../Assets/estatisticas.svg?react";
@@ -12,9 +12,11 @@ const UserHeaderNav = () => {
   const { userLogout } = React.useContext(UserContext);
   const [mobile, setMobile] = React.useState(null);
   const [width, setWidth] = React.useState(window.innerWidth);
+  const navigate = useNavigate();
 
-  function navLinkClass(isActive) {
-    return isActive ? `${styles.link} ${styles.active}` : styles.link;
+  function handleLogout() {
+    userLogout();
+    navigate("/login");
   }
 
   React.useEffect(() => {
@@ -36,32 +38,20 @@ const UserHeaderNav = () => {
     <nav className={styles.nav}>
       {mobile && <MenuMobile />}
       <div className={styles.menu}>
-        <NavLink
-          className={({ isActive }) => navLinkClass(isActive)}
-          to="/conta"
-          end
-        >
-          <Feed className={styles.icon} />
+        <NavLink to="/conta" end>
+          <Feed />
           {mobile && "Minhas Fotos"}
         </NavLink>
-        <NavLink
-          className={({ isActive }) => navLinkClass(isActive)}
-          to="/conta/estatisticas"
-          end
-        >
-          <Estatisticas className={styles.icon} />
+        <NavLink to="/conta/estatisticas">
+          <Estatisticas />
           {mobile && "Estatísticas"}
         </NavLink>
-        <NavLink
-          className={({ isActive }) => navLinkClass(isActive)}
-          to="/conta/postar"
-          end
-        >
-          <Adicionar className={styles.icon} />
+        <NavLink to="/conta/postar">
+          <Adicionar />
           {mobile && "Adicionar Foto"}
         </NavLink>
-        <button className={styles.link}>
-          <Sair className={styles.icon} onClick={userLogout} />
+        <button className={styles.button}>
+          <Sair onClick={handleLogout} />
           {mobile && "Sair"}
         </button>
       </div>
