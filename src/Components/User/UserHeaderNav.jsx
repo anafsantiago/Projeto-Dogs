@@ -1,6 +1,6 @@
 import React from "react";
 import { UserContext } from "../../UserContext";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import styles from "./UserHeaderNav.module.css";
 import Feed from "../../Assets/feed.svg?react";
 import Estatisticas from "../../Assets/estatisticas.svg?react";
@@ -12,12 +12,18 @@ const UserHeaderNav = () => {
   const { userLogout } = React.useContext(UserContext);
   const navigate = useNavigate();
   const mobile = useMedia("(max-width: 40rem)");
-  const [mobileMenu, setMobileMenu] = React.useState(false);
+  const [mobileMenu, setMobileMenu] = React.useState(false); //Indica se o menu está ativo ou não
+  const { pathname } = useLocation();
 
   function handleLogout() {
     userLogout();
     navigate("/login");
   }
+
+  //Sempre que o pathname mudar, o menu mobile será desativado e, assim, não aparecerá
+  React.useEffect(() => {
+    setMobileMenu(false);
+  }, [pathname]);
 
   return (
     <>
@@ -31,7 +37,11 @@ const UserHeaderNav = () => {
         ></button>
       )}
 
-      <nav className={`${!mobileMenu && styles.menuDesativado} ${styles.nav}`}>
+      <nav
+        className={`${mobile ? styles.navMobile : styles.nav} ${
+          mobileMenu && styles.navMobileActive
+        }`}
+      >
         <NavLink to="/conta" end>
           <Feed />
           {mobile && "Minhas Fotos"}
