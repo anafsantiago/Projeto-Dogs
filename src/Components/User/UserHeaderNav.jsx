@@ -11,7 +11,7 @@ import useMedia from "../../Hooks/useMedia";
 const UserHeaderNav = () => {
   const { userLogout } = React.useContext(UserContext);
   const navigate = useNavigate();
-  const mobile = useMedia("(max-width: 40rem)");
+  const mobile = useMedia("(max-width: 40rem)"); //Indica se o site está no modo mobile ou não
   const [mobileMenu, setMobileMenu] = React.useState(false); //Indica se o menu está ativo ou não
   const { pathname } = useLocation();
 
