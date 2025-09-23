@@ -50,7 +50,7 @@ export function TOKEN_VALIDATE_POST(token) {
   };
 }
 
-export function PHOTO_POST(token, body) {
+export function PHOTO_POST(token, formData) {
   return {
     url: API_URL + "/api/photo",
     options: {
@@ -58,7 +58,22 @@ export function PHOTO_POST(token, body) {
       headers: {
         Authorization: "Bearer " + token,
       },
-      body: body,
+      body: formData,
+    },
+  };
+}
+
+export function PHOTO_GET() {
+  return {
+    url: {
+      endpoint: {
+        photos: API_URL + "/api/photo",
+        photos_query: API_URL + "/api/photo/?_total=9&_page=1&_user=0",
+        photo: API_URL + "/api/photo/:id",
+      },
+    },
+    options: {
+      method: "GET",
     },
   };
 }

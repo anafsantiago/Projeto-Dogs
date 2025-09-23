@@ -1,0 +1,36 @@
+.photoPost {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.file {
+  margin-bottom: 1rem;
+}
+
+.preview {
+  border-radius: 1rem;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.preview::after {
+  content: "";
+  display: block;
+  height: 0px;
+  padding-bottom: 100%; /*Faz com que a imagem cresça exatamente do tamanho máximo do item ao lado*/
+}
+
+@media (max-width: 40rem) {
+  .photoPost {
+    grid-template-columns: 1fr;
+  }
+
+  .preview {
+    background-position: inherit;
+    max-height: auto;
+    background-size: auto;
+  }
+}
