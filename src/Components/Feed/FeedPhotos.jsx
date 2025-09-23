@@ -1,39 +1,34 @@
 import React from "react";
 import styles from "./FeedPhotos.module.css";
-import { PHOTO_GET } from "../../api";
+import { PHOTOS_GET } from "../../api";
 import useFetch from "../../Hooks/useFetch";
+import FeedPhotosItem from "./FeedPhotosItem";
+import Erro from "../Helper/Erro";
+import Loading from "../Helper/Loading";
 
 const FeedPhotos = () => {
   const { data, loading, error, request } = useFetch();
-  const [imgSrc, setImgSrc] = React.useState([]);
 
   React.useEffect(() => {
-    async function getPhoto() {
-      const { url, options } = PHOTO_GET();
-      const { response, json } = await request(url.endpoint.photos, options);
+    async function fetchPhotos() {
+      const { url, options } = PHOTOS_GET({ page: 1, total: 6, user: 0 }); //User: 0 significa que vai puxar de qualquer usuário e não de um específico
+      const { response, json } = await request(url, options);
     }
-    getPhoto();
-  }, []);
+    fetchPhotos();
+  }, [request]);
 
-  React.useEffect(() => {
-    if (data) {
-      const arrayImg = data.map((item) => {
-        return item.src;
-      });
-      setImgSrc(arrayImg);
-    }
-  }, [data]);
-
-  if (loading) return <p>Carregando...</p>;
+  if (error) return <Erro error={error} />;
+  if (loading) return <Loading />;
   if (data)
     return (
-      <div className={styles.feedPhotos}>
-        {imgSrc &&
-          imgSrc.map((item, index) => {
-            return <img key={index} src={item} alt="" />;
+      <ul className={`${styles.feed} animeLeft`}>
+        {data &&
+          data.map((photo) => {
+            return <FeedPhotosItem key={photo.id} photo={photo} />;
           })}
-      </div>
+      </ul>
     );
+  else return null;
 };
 
 export default FeedPhotos;
