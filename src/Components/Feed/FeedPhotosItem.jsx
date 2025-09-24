@@ -2,8 +2,8 @@ import React from "react";
 import styles from "./FeedPhotosItem.module.css";
 
 const FeedPhotosItem = ({ photo, setModalPhoto, setTarget, target }) => {
-  function handleClick({ target }) {
-    setTarget(target);
+  function handleClick(event) {
+    setTarget(event.target);
     setModalPhoto(photo);
   }
 

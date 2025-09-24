@@ -7,4 +7,44 @@
   top: 0px;
   left: 0px;
   background: rgba(0, 0, 0, 0.4);
+  align-items: center;
+}
+
+.content {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  max-width: 55rem;
+}
+
+.modalInfos {
+  background-color: white;
+  padding: 2rem;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.datas {
+  display: flex;
+  gap: 2rem;
+  font-weight: bold;
+}
+
+.data p {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.datas p::before {
+  content: "";
+  width: 2px;
+  height: 20px;
+  background-color: #333;
+  position: absolute;
+
+  display: block;
 }
