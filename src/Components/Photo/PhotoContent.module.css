@@ -1,47 +1,91 @@
 .photo {
-  margin: 0 auto;
+  margin: auto;
+  height: 36rem;
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  max-width: 55rem;
-  border-radius: 4px;
+  grid-template-columns: 36rem 20rem;
+  grid-template-rows: auto 1fr auto; /*A 1ª linha é contém as informações sobre os cachorros; a 2ª, mostra os comentários e a 3ª é para postar os comentários*/
+  border-radius: 0.2rem;
+  background-color: white;
   overflow: hidden;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: scaleUp 0.3s forwards;
+}
+
+@keyframes scaleUp {
+  to {
+    opacity: 1;
+    transform: initial;
+  }
 }
 
 .details {
-  background-color: white;
-  padding: 2rem;
+  padding: 2rem 2rem 0 2rem;
 }
 
-.infos p {
+.img {
+  grid-row: 1/4;
+}
+
+.comments {
+  padding: 0 2rem;
+}
+
+.author {
+  opacity: 0.5;
+  margin-bottom: 1rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.author a:hover {
+  text-decoration: underline;
+}
+
+.visualizacoes::before {
+  content: "";
+  display: inline-block;
+  background: url("../../Assets/visualizacao-black.svg");
+  width: 16px;
+  height: 10px;
+  margin-right: 0.5rem;
 }
 
 .attributes {
   display: flex;
-  gap: 2rem;
   font-weight: bold;
-  font-size: 1.1rem;
-  font-family: var(--type-first);
-  margin-top: 1.5rem;
+  font-size: 1.125rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 
 .attributes li {
-  display: flex;
-  align-items: center;
+  margin-right: 2rem;
 }
 
 .attributes li::before {
   content: "";
+  display: inline-block;
   width: 2px;
   height: 20px;
   background-color: #333;
-  margin-right: 8px;
+  margin-right: 0.5rem;
+  position: relative;
+  top: 3px;
+  margin-top: 5px;
 }
 
-@media (max-width: 60rem) {
+/*Baseado no tamanho das colunas no grid (56rem) + o padding para cada lado (4rem + 4rem) = 64rem*/
+@media (max-width: 64rem) {
   .photo {
-    grid-template-columns: 1fr;
-    max-width: 40rem;
+    height: auto;
+    /*Subtrai o total da viewport pelos valores do padding top e bottom (2rem em cada)*/
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto; /*Gera um scroll*/
+    grid-template-columns: minmax(20rem, 40rem);
+  }
+  .img {
+    grid-row: 1;
   }
 }

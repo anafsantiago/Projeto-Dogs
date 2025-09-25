@@ -7,5 +7,11 @@
   top: 0px;
   left: 0px;
   background: rgba(0, 0, 0, 0.4);
-  align-items: center;
+  padding: 2rem calc(4rem + 15px) 2rem 4rem; /*Soma com os 15px da barra de scroll vertical*/
+}
+
+@media (max-width: 40rem) {
+  .modal {
+    padding: 2rem calc(2rem + 15px) 2rem 2rem;
+  }
 }
