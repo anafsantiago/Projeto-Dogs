@@ -4,6 +4,7 @@ import useFetch from "../../Hooks/useFetch";
 import { PHOTO_GET } from "../../api";
 import Erro from "../Helper/Erro";
 import Loading from "../Helper/Loading";
+import PhotoContent from "../Photo/PhotoContent";
 
 const FeedModal = ({ photo, setModalPhoto }) => {
   const { data, loading, error, request } = useFetch();
@@ -14,7 +15,7 @@ const FeedModal = ({ photo, setModalPhoto }) => {
       const { response, json } = await request(url, options);
     }
     fetchPhoto();
-  }, [request]);
+  }, [photo, request]);
 
   function handleClick(event) {
     if (event.target === event.currentTarget) {
@@ -22,28 +23,13 @@ const FeedModal = ({ photo, setModalPhoto }) => {
     }
   }
 
-  if (error) return <Erro error={error} />;
-  if (loading) return <Loading />;
-  if (data) {
-    return (
-      <div className={styles.modal} onClick={handleClick}>
-        <div className={styles.content}>
-          <img src={data.photo.src} alt="" />
-          <div className={styles.modalInfos}>
-            <div className={styles.details}>
-              <p>@{data.photo.author}</p>
-              <p>{data.photo.acessos}</p>
-            </div>
-            <h1 className="title">{data.photo.title}</h1>
-            <div className={styles.datas}>
-              <p>{data.photo.peso} kg</p>
-              <p>{data.photo.idade} anos</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  } else return null;
+  return (
+    <section className={styles.modal} onClick={handleClick}>
+      {error && <Erro error={error} />}
+      {loading && <Loading />}
+      {data && <PhotoContent data={data} />}
+    </section>
+  );
 };
 
 export default FeedModal;
