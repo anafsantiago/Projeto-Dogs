@@ -6,7 +6,7 @@ import FeedPhotosItem from "./FeedPhotosItem";
 import Erro from "../Helper/Erro";
 import Loading from "../Helper/Loading";
 
-const FeedPhotos = ({ setModalPhoto, setTarget, target }) => {
+const FeedPhotos = ({ setModalPhoto }) => {
   const { data, loading, error, request } = useFetch();
 
   React.useEffect(() => {
@@ -30,8 +30,6 @@ const FeedPhotos = ({ setModalPhoto, setTarget, target }) => {
                   key={photo.id}
                   photo={photo}
                   setModalPhoto={setModalPhoto}
-                  setTarget={setTarget}
-                  target={target}
                 />
               );
             })}

@@ -31,12 +31,14 @@
   display: flex;
   gap: 2rem;
   font-weight: bold;
+  font-size: 1.1rem;
+  font-family: var(--type-first);
+  margin-top: 1.5rem;
 }
 
-.data p {
+.datas p {
   display: flex;
   align-items: center;
-  position: relative;
 }
 
 .datas p::before {
@@ -44,7 +46,5 @@
   width: 2px;
   height: 20px;
   background-color: #333;
-  position: absolute;
-
-  display: block;
+  margin-right: 8px;
 }

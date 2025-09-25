@@ -5,7 +5,7 @@ import { PHOTO_GET } from "../../api";
 import Erro from "../Helper/Erro";
 import Loading from "../Helper/Loading";
 
-const FeedModal = ({ photo }) => {
+const FeedModal = ({ photo, setModalPhoto }) => {
   const { data, loading, error, request } = useFetch();
 
   React.useEffect(() => {
@@ -14,14 +14,19 @@ const FeedModal = ({ photo }) => {
       const { response, json } = await request(url, options);
     }
     fetchPhoto();
-    console.log(data.photo);
   }, [request]);
+
+  function handleClick(event) {
+    if (event.target === event.currentTarget) {
+      setModalPhoto(null);
+    }
+  }
 
   if (error) return <Erro error={error} />;
   if (loading) return <Loading />;
   if (data) {
     return (
-      <div className={styles.modal}>
+      <div className={styles.modal} onClick={handleClick}>
         <div className={styles.content}>
           <img src={data.photo.src} alt="" />
           <div className={styles.modalInfos}>
