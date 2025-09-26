@@ -92,9 +92,7 @@ export function COMMENT_POST(id, token, comment) {
         "Content-Type": "application/json",
         Authorization: "Bearer " + token,
       },
-      body: {
-        comment: comment,
-      },
+      body: JSON.stringify(comment),
     },
   };
 }

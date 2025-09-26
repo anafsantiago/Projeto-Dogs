@@ -4,6 +4,7 @@ import { COMMENT_GET } from "../../api";
 import useFetch from "../../Hooks/useFetch";
 import Erro from "../Helper/Erro";
 import Loading from "../Helper/Loading";
+import PhotoCommentsForm from "./PhotoCommentsForm";
 
 const PhotoComments = ({ id, comments }) => {
   const { data, error, loading, request } = useFetch();
@@ -21,14 +22,21 @@ const PhotoComments = ({ id, comments }) => {
       {error && <Erro error={error} />}
       {loading && <Loading />}
       {data && (
-        <p>
-          {data.length > 0 && (
-            <span className={styles.commentAuthor}>
-              {data[0].comment_author}:
-            </span>
-          )}
-          {data.length > 0 && data[0].comment_content}
-        </p>
+        <>
+          {data.length > 0 &&
+            data.map((item) => {
+              return (
+                <p>
+                  <span className={styles.commentAuthor}>
+                    {item.comment_author}:
+                  </span>
+                  {item.comment_content}
+                </p>
+              );
+            })}
+
+          <PhotoCommentsForm id={id} comments={comments} />
+        </>
       )}
     </div>
   );
