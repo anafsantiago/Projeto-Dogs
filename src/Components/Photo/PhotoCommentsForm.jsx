@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const PhotoCommentsForm = () => {
-  return (
-    <div>PhotoCommentsForm</div>
-  )
-}
+  return <div>PhotoCommentsForm</div>;
+};
 
-export default PhotoCommentsForm
+export default PhotoCommentsForm;
