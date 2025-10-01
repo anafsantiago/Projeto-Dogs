@@ -1,44 +1,32 @@
 import React from "react";
 import styles from "./PhotoComments.module.css";
-import { COMMENT_GET } from "../../api";
-import useFetch from "../../Hooks/useFetch";
-import Erro from "../Helper/Erro";
-import Loading from "../Helper/Loading";
 import PhotoCommentsForm from "./PhotoCommentsForm";
+import { UserContext } from "../../UserContext";
 
 const PhotoComments = ({ id, comments }) => {
-  const { data, error, loading, request } = useFetch();
+  const { login } = React.useContext(UserContext);
+  const commentSection = React.useRef();
+  const [userComments, setUserComments] = React.useState(() => comments);
 
+  //Mostra os últimos comentários sempre que o userComments mudar, ou seja, ao entrar e sempre que um novo comentário for adicionado
   React.useEffect(() => {
-    async function fetchGetComments() {
-      const { url, options } = COMMENT_GET(id);
-      const { response, json } = await request(url, options);
-    }
-    fetchGetComments();
-  }, [comments, request]);
+    commentSection.current.scrollTop = commentSection.current.scrollHeight;
+  }, [userComments]);
 
   return (
-    <div>
-      {error && <Erro error={error} />}
-      {loading && <Loading />}
-      {data && (
-        <>
-          {data.length > 0 &&
-            data.map((item) => {
-              return (
-                <p>
-                  <span className={styles.commentAuthor}>
-                    {item.comment_author}:
-                  </span>
-                  {item.comment_content}
-                </p>
-              );
-            })}
-
-          <PhotoCommentsForm id={id} comments={comments} />
-        </>
-      )}
-    </div>
+    <>
+      <ul ref={commentSection} className={styles.comments}>
+        {userComments.map((comment) => {
+          return (
+            <li key={comment.comment_ID}>
+              <b>{comment.comment_author}:</b>
+              <span>{comment.comment_content}</span>
+            </li>
+          );
+        })}
+      </ul>
+      {login && <PhotoCommentsForm id={id} setUserComments={setUserComments} />}
+    </>
   );
 };
 

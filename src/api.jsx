@@ -83,7 +83,7 @@ export function PHOTO_GET(id) {
   };
 }
 
-export function COMMENT_POST(id, token, comment) {
+export function COMMENT_POST(id, token, body) {
   return {
     url: `${API_URL}/api/comment/${id}`,
     options: {
@@ -92,7 +92,7 @@ export function COMMENT_POST(id, token, comment) {
         "Content-Type": "application/json",
         Authorization: "Bearer " + token,
       },
-      body: JSON.stringify(comment),
+      body: JSON.stringify(body),
     },
   };
 }
