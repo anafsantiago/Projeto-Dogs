@@ -105,3 +105,15 @@ export function COMMENT_GET(id) {
     },
   };
 }
+
+export function PHOTO_DELETE(id, token) {
+  return {
+    url: `${API_URL}/api/photo/${id}`,
+    options: {
+      method: "DELETE",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    },
+  };
+}
