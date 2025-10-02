@@ -1,0 +1,29 @@
+.wrapper {
+  display: grid;
+}
+
+.img {
+  display: block;
+  max-width: 100%;
+  grid-area: 1/1;
+  opacity: 0; /*Será alterada por meio do JavaScript*/
+  transition: 0.2s;
+}
+
+.skeleton {
+  grid-area: 1/1;
+  height: 100%;
+  background-image: linear-gradient(90deg, #eee 0px, #fff 50%, #eee 100%);
+  background-color: #eee;
+  background-size: 200%; /*Deve ser maior do que o tamanho normal*/
+  animation: skeleton 1.5s infinite linear;
+}
+
+@keyframes skeleton {
+  from {
+    background-position: 0px;
+  }
+  to {
+    background-position: -200%; /*O mesmo valor do background-size, para que ele fique correndo para o lado*/
+  }
+}
