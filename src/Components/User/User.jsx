@@ -5,7 +5,7 @@ import { UserContext } from "../../UserContext";
 
 const User = () => {
   const { data } = React.useContext(UserContext);
-  const user = data.id;
+  const user = data.id; //Id do usuário que será utilizado para puxar apenas as fotos do usuário logado na página de perfil dele.
 
   return (
     <section className="container">
