@@ -27,10 +27,6 @@
   grid-row: 1/4;
 }
 
-.comments {
-  padding: 0 2rem;
-}
-
 .author {
   opacity: 0.5;
   margin-bottom: 1rem;
@@ -74,6 +70,21 @@
   position: relative;
   top: 3px;
   margin-top: 5px;
+}
+
+.single.photo {
+  grid-template-columns: 1fr;
+  height: auto;
+}
+
+.single .img {
+  border-radius: 0.4rem;
+  overflow: hidden;
+  grid-row: 1;
+}
+
+.single .details {
+  padding: 1rem 0 0 0;
 }
 
 /*Baseado no tamanho das colunas no grid (56rem) + o padding para cada lado (4rem + 4rem) = 64rem*/

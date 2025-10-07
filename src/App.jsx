@@ -16,6 +16,8 @@ import ProtectedRoute from "./Components/Helper/ProtectedRoute";
 import UserStats from "./Components/User/UserStats";
 import Feed from "./Components/Feed/Feed";
 import UserPhotoPost from "./Components/User/UserPhotoPost";
+import Photo from "./Components/Photo/Photo";
+import UserProfile from "./Components/User/UserProfile";
 
 const App = () => {
   return (
@@ -42,6 +44,8 @@ const App = () => {
             <Route path="estatisticas" element={<UserStats />} />
             <Route path="postar" element={<UserPhotoPost />} />
           </Route>
+          <Route path="foto/:id" element={<Photo />} />
+          <Route path="perfil/:user" element={<UserProfile />} />
         </Routes>
         <Footer />
       </UserStorage>

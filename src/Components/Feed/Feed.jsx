@@ -3,7 +3,7 @@ import FeedModal from "./FeedModal";
 import FeedPhotos from "./FeedPhotos";
 import { useOutletContext } from "react-router-dom";
 
-const Feed = () => {
+const Feed = ({ userProfile }) => {
   const [modalPhoto, setModalPhoto] = React.useState(null);
   const user = useOutletContext(); //Recebe o user que é passado como contexto do outlet
   const [pages, setPages] = React.useState([1]);
@@ -37,8 +37,6 @@ const Feed = () => {
     };
   }, [infinite]);
 
-  console.log(pages);
-
   return (
     <div style={{ position: "relative" }}>
       {modalPhoto && (
@@ -48,7 +46,7 @@ const Feed = () => {
         return (
           <FeedPhotos
             key={page}
-            user={user}
+            user={user || userProfile}
             page={page}
             setModalPhoto={setModalPhoto}
             setInfinite={setInfinite}
