@@ -42,7 +42,7 @@ const LoginPasswordReset = () => {
   }
 
   return (
-    <section>
+    <section style={{ paddingTop: "8rem" }}>
       <h1 className="title">Resete a Senha</h1>
       <form onSubmit={handleSubmit}>
         <Input id="password" type="password" label="Nova Senha" {...password} />

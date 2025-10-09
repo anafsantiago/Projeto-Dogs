@@ -22,7 +22,7 @@ const LoginPasswordLost = () => {
   }
 
   return (
-    <section>
+    <section style={{ paddingTop: "8rem" }}>
       <h1 className="title">Perdeu a senha?</h1>
       {data ? (
         <p style={{ color: "#4c1" }}>{data}</p>
