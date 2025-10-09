@@ -24,7 +24,7 @@ module.exports = {
   rules: {
     "react-refresh/only-export-components": "off",
     "react/react-in-jsx-scope": "off",
-    "react/prop-types": "off",
+    "react/prop-types": "on",
     "no-unsafe-finally": "off",
     "no-unused-vars": "off",
     "react/jsx-key": "off",

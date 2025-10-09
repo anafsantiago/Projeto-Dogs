@@ -1,7 +1,8 @@
 import React from "react";
+import { useOutletContext } from "react-router-dom";
+import PropTypes from "prop-types";
 import FeedModal from "./FeedModal";
 import FeedPhotos from "./FeedPhotos";
-import { useOutletContext } from "react-router-dom";
 
 const Feed = ({ userProfile }) => {
   const [modalPhoto, setModalPhoto] = React.useState(null);
@@ -55,6 +56,16 @@ const Feed = ({ userProfile }) => {
       })}
     </div>
   );
+};
+
+Feed.defaultProps = {
+  user: 0,
+  userProfile: 0,
+};
+
+Feed.propTypes = {
+  userProfile: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    .isRequired,
 };
 
 export default Feed;

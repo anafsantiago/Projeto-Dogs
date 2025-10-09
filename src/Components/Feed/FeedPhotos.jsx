@@ -15,7 +15,7 @@ const FeedPhotos = ({ user, page, setModalPhoto, setInfinite }) => {
       const { url, options } = PHOTOS_GET({
         page,
         total,
-        user: user || 0,
+        user: user,
       }); //User: 0 significa que vai puxar de qualquer usuário e não de um específico
       const { response, json } = await request(url, options);
       if (response && response.ok && json.length < total) {
