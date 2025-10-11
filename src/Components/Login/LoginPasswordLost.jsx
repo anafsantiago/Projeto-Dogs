@@ -1,10 +1,11 @@
 import React from "react";
-import Input from "../Forms/Input";
-import useForm from "../../Hooks/useForm";
-import Button from "../Forms/Button";
 import useFetch from "../../Hooks/useFetch";
 import { PASSWORD_LOST } from "../../api";
+import useForm from "../../Hooks/useForm";
+import Input from "../Forms/Input";
+import Button from "../Forms/Button";
 import Erro from "../Helper/Erro";
+import Head from "../Helper/Head";
 
 const LoginPasswordLost = () => {
   const login = useForm();
@@ -22,7 +23,11 @@ const LoginPasswordLost = () => {
   }
 
   return (
-    <section style={{ paddingTop: "8rem" }}>
+    <section className="animeLeft">
+      <Head
+        title="Perdeu a senha"
+        description="Página para recuperar a senha do site Dogs - Rede social para cachorros."
+      />
       <h1 className="title">Perdeu a senha?</h1>
       {data ? (
         <p style={{ color: "#4c1" }}>{data}</p>

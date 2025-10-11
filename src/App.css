@@ -90,3 +90,16 @@ a {
     transform: initial;
   }
 }
+
+.App {
+  /*Técnica utilizada para que o footer fique sempre embaixo e não apareça no topo enquanto o corpo da página carrega*/
+  display: flex;
+  flex-direction: column;
+  min-height: calc(
+    100vh + 10rem
+  ); /*Tamanho total da página (100vh) + tamanho definido no footer*/
+}
+
+.AppBody {
+  flex: 1; /*O conteúdo do main se expande, fazendo com que o footer fique sempre embaixo*/
+}

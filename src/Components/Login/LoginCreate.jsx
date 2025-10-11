@@ -2,10 +2,11 @@ import React from "react";
 import Input from "../Forms/Input";
 import useForm from "../../Hooks/useForm";
 import useFetch from "../../Hooks/useFetch";
-import Button from "../Forms/Button";
-import Erro from "../Helper/Erro";
 import { UserContext } from "../../UserContext";
 import { USER_POST } from "../../api";
+import Button from "../Forms/Button";
+import Erro from "../Helper/Erro";
+import Head from "../Helper/Head";
 
 const LoginCreate = () => {
   const username = useForm();
@@ -32,6 +33,10 @@ const LoginCreate = () => {
 
   return (
     <section className="animeLeft">
+      <Head
+        title="Crie sua conta"
+        description="Página para cadastro no site Dogs - Rede social para cachorros."
+      />
       <h1 className="title">Cadastre-se</h1>
       <form onSubmit={handleSubmit}>
         <Input

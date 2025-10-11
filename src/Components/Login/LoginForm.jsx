@@ -1,12 +1,13 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useForm from "../../Hooks/useForm";
-import Erro from "../Helper/Erro";
+import { UserContext } from "../../UserContext";
 import styles from "./LoginForm.module.css";
 import stylesButton from "../Forms/Button.module.css";
 import Input from "../Forms/Input";
 import Button from "../Forms/Button";
-import { UserContext } from "../../UserContext";
+import Erro from "../Helper/Erro";
+import Head from "../Helper/Head";
 
 const LoginForm = () => {
   const { userLogin, error, loading } = React.useContext(UserContext);
@@ -24,6 +25,10 @@ const LoginForm = () => {
 
   return (
     <section className="animeLeft">
+      <Head
+        title="Login"
+        description="Página de login do site Dogs - Rede social para cachorros."
+      />
       <h1 className="title">Login</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
         <Input

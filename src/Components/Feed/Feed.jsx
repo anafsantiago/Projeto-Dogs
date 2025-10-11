@@ -54,6 +54,17 @@ const Feed = ({ userProfile }) => {
           />
         );
       })}
+      {!infinite && (
+        <p
+          style={{
+            color: "rgb(136, 136, 136)",
+            textAlign: "center",
+            padding: "2rem 0px 4rem",
+          }}
+        >
+          Não existem mais postagens
+        </p>
+      )}
     </div>
   );
 };

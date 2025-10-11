@@ -22,39 +22,43 @@ import NotFound from "./Components/NotFound";
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <UserStorage>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="login/*" element={<Login />}>
-            <Route path="" element={<LoginForm />} />
-            <Route path="criar" element={<LoginCreate />} />
-            <Route path="perdeu" element={<LoginPasswordLost />} />
-            <Route path="resetar" element={<LoginPasswordReset />} />
-            <Route path="*" element={<NotFound />} />
-          </Route>
-          <Route
-            path="conta/*"
-            element={
-              <ProtectedRoute>
-                <User />
-              </ProtectedRoute>
-            }
-          >
-            <Route path="" element={<Feed />} />
-            <Route path="estatisticas" element={<UserStats />} />
-            <Route path="postar" element={<UserPhotoPost />} />
-            <Route path="*" element={<NotFound />} />
-          </Route>
-          <Route path="foto/:id" element={<Photo />} />
-          <Route path="perfil/:user" element={<UserProfile />} />
-          <Route path="*" element={<NotFound />} />{" "}
-          {/*Para qualquer rota que não seja uma das especificadas, renderiza o componente NotFound*/}
-        </Routes>
-        <Footer />
-      </UserStorage>
-    </BrowserRouter>
+    <div className="App">
+      <BrowserRouter>
+        <UserStorage>
+          <Header />
+          <main className="AppBody">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="login/*" element={<Login />}>
+                <Route path="" element={<LoginForm />} />
+                <Route path="criar" element={<LoginCreate />} />
+                <Route path="perdeu" element={<LoginPasswordLost />} />
+                <Route path="resetar" element={<LoginPasswordReset />} />
+                <Route path="*" element={<NotFound />} />
+              </Route>
+              <Route
+                path="conta/*"
+                element={
+                  <ProtectedRoute>
+                    <User />
+                  </ProtectedRoute>
+                }
+              >
+                <Route path="" element={<Feed />} />
+                <Route path="estatisticas" element={<UserStats />} />
+                <Route path="postar" element={<UserPhotoPost />} />
+                <Route path="*" element={<NotFound />} />
+              </Route>
+              <Route path="foto/:id" element={<Photo />} />
+              <Route path="perfil/:user" element={<UserProfile />} />
+              <Route path="*" element={<NotFound />} />{" "}
+              {/*Para qualquer rota que não seja uma das especificadas, renderiza o componente NotFound*/}
+            </Routes>
+          </main>
+          <Footer />
+        </UserStorage>
+      </BrowserRouter>
+    </div>
   );
 };
 

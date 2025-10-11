@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import UserHeader from "./UserHeader";
 import { UserContext } from "../../UserContext";
+import Head from "../Helper/Head";
 
 const User = () => {
   const { data } = React.useContext(UserContext);
@@ -9,6 +10,10 @@ const User = () => {
 
   return (
     <section className="container">
+      <Head
+        title="Minha Conta"
+        description="Página da conta do usuário da rede social Dogs"
+      />
       <UserHeader />
       <Outlet context={user} />{" "}
       {/*Passa o user como contexto do outlet para os componentes filhos*/}

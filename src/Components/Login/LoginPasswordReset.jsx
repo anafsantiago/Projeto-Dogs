@@ -2,10 +2,11 @@ import React from "react";
 import { PASSWORD_RESET } from "../../api";
 import useForm from "../../Hooks/useForm";
 import { Navigate, useNavigate } from "react-router-dom";
+import useFetch from "../../Hooks/useFetch";
 import Input from "../Forms/Input";
 import Button from "../Forms/Button";
-import useFetch from "../../Hooks/useFetch";
 import Erro from "../Helper/Erro";
+import Head from "../Helper/Head";
 
 const LoginPasswordReset = () => {
   const { data, loading, error, request } = useFetch();
@@ -42,7 +43,11 @@ const LoginPasswordReset = () => {
   }
 
   return (
-    <section style={{ paddingTop: "8rem" }}>
+    <section className="animeLeft">
+      <Head
+        title="Resete a senha"
+        description="Página para resetar a senha do site Dogs - Rede social para cachorros."
+      />
       <h1 className="title">Resete a Senha</h1>
       <form onSubmit={handleSubmit}>
         <Input id="password" type="password" label="Nova Senha" {...password} />
