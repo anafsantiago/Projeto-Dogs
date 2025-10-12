@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import FeedModal from "./FeedModal";
 import FeedPhotos from "./FeedPhotos";
 
-const Feed = ({ userProfile }) => {
+const Feed = ({ userProfile, conta }) => {
   const [modalPhoto, setModalPhoto] = React.useState(null);
   const user = useOutletContext(); //Recebe o user que é passado como contexto do outlet
   const [pages, setPages] = React.useState([1]);
@@ -54,7 +54,7 @@ const Feed = ({ userProfile }) => {
           />
         );
       })}
-      {!infinite && (
+      {!infinite && !conta && (
         <p
           style={{
             color: "rgb(136, 136, 136)",

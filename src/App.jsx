@@ -44,7 +44,7 @@ const App = () => {
                   </ProtectedRoute>
                 }
               >
-                <Route path="" element={<Feed />} />
+                <Route path="" element={<Feed conta={true} />} />
                 <Route path="estatisticas" element={<UserStats />} />
                 <Route path="postar" element={<UserPhotoPost />} />
                 <Route path="*" element={<NotFound />} />
