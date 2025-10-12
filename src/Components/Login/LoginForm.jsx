@@ -59,7 +59,7 @@ const LoginForm = () => {
         ) : (
           <Button>Entrar</Button>
         )}
-        <Erro error={error} />
+        <Erro error={error && "Usuário e/ou senha inválidos"} />
       </form>
       <Link to="/login/perdeu" className={styles.perdeu}>
         Perdeu a Senha?
