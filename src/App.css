@@ -103,3 +103,7 @@ a {
 .AppBody {
   flex: 1; /*O conteúdo do main se expande, fazendo com que o footer fique sempre embaixo*/
 }
+
+.VictoryContainer {
+  height: initial !important; /*Alteração para permitir que os gráficos fiquem alinhados ao centro*/
+}
