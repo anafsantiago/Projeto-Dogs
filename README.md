@@ -1,4 +1,6 @@
-#  Projeto final do curso de React, da plataforma Origamid. Nele, foram utilizados conceitos como componentização, hooks, props, routers, entre outros.
+#  Projeto Dogs - Rede social para pets
+
+Projeto final do curso de React, da plataforma Origamid. Nele, foram utilizados conceitos como componentização, hooks, props, routers, entre outros.
 
 ## React + Vite
 
