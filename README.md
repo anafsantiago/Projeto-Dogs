@@ -1,4 +1,6 @@
-# React + Vite
+#  Projeto final do curso de React, da plataforma Origamid. Nele, foram utilizados conceitos como componentização, hooks, props, routers, entre outros.
+
+## React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
